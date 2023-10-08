@@ -1,18 +1,25 @@
 <template>
-  <ul>
-    <li v-for="item in items" :key="item.id">
-      <ListItem :diameter="item.d" :volume="item.v" :quantity="item.q"
-                @update:quantity="(v)=>itemChangeQuantity(item, v)"
-                @remove="store.dispatch('removeItem', item.id)"
-      />
-    </li>
-    <li>
-      <AddForm />
-    </li>
-  </ul>
-  <div class="total">
-    <div>Итого</div>
-    <div class="number">{{ total }}</div>
+  <div class="list-content">
+    <div class="content">
+      <table>
+        <ListItem v-for="item in items" :key="item.id"
+                  :diameter="item.d" :volume="item.v" :quantity="item.q"
+                  @update:quantity="(v)=>itemChangeQuantity(item, v)"
+                  @remove="store.dispatch('removeItem', item.id)"
+        />
+      </table>
+    </div>
+
+    <div class="bottom">
+      <div class="right">
+        <AddForm />
+      </div>
+      <br>
+      <div class="total">
+        <div>Итого</div>
+        <div class="number">{{ total }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,19 +43,37 @@ function itemChangeQuantity(item, v) {
 </script>
 
 <style scoped>
-ul {
-  list-style: none;
-  /*margin: -10px 0 0;*/
-  padding: 0;
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+.list-content {
+  display:flex;
+  flex-direction: column;
+}
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: 65px;
+}
+.bottom {
+  background: white;
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right:0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
 }
 
-li {
-  margin-top: 10px;
-}
 .total {
   text-align: right;
   font-weight: bold;
 }
+
 .number {
   font-size: 24px;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="form">
     <select v-model="selected">
       <option v-for="item in diameters" :key="item[0]" :value="item.join(',')">{{ item[0] }}</option>
     </select>
@@ -23,13 +23,15 @@ const diameters = computed(() => {
 const selected = ref(null);
 
 function add() {
-  const v = selected.value.split(',');
-  store.dispatch('addItem', {d: +v[0], v: +v[1], q: 1});
+  if (selected.value) {
+    const v = selected.value.split(',');
+    store.dispatch('addItem', {d: +v[0], v: +v[1], q: 1});
+  }
 }
 </script>
 
 <style scoped>
-.wrap {
+.form {
   margin-top: 15px;
   display: flex;
   gap: 10px;

@@ -1,14 +1,22 @@
 <template>
-  <div class="item">
-    <div>{{ diameter }}</div>
-    <div>{{ volume }}</div>
-    <div class="btn" @click="q--">-</div>
-    <input type="number" min="0" step="1" :value="q" @input="q = $event.target.value">
-    <div class="btn" @click="q++">+</div>
-    <div>=</div>
-    <div>{{ total }}</div>
-    <div><button @click="emits('remove')">x</button></div>
-  </div>
+  <tr class="item">
+    <td><div class="d">{{ diameter }}</div></td>
+    <td><div class="v">{{ volume }}</div></td>
+    <td>
+      <div class="q">
+        <div class="btn" @click="q--">-</div>
+        <div class="input">
+          <input type="number" min="0" step="1" :value="q" @input="q = $event.target.value">
+        </div>
+        <div class="btn" @click="q++">+</div>
+      </div>
+    </td>
+    <td><div class="v">=</div></td>
+    <td><div class="total">{{ total }}</div></td>
+    <td>
+      <button class="r" @click="emits('remove')">x</button>
+    </td>
+  </tr>
 </template>
 
 <script setup>
@@ -27,23 +35,52 @@ const total = computed(() => (props.volume * props.quantity).toFixed(3))
 </script>
 
 <style scoped>
-.item {
+.d {
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
+  flex-shrink: 0;
 }
+
+.input {
+  flex-grow: 1;
+}
+
 input {
-  width: 100px;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  border: 0;
 }
+
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
   line-height: 1;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+.q {
+  display: flex;
+  align-items: center;
+}
+.v {
+  padding: 0 15px;
+}
+.r {
+  margin-left: 15px;
+}
+.total {
+  min-width: 55px;
+  font-weight: bold;
 }
 </style>

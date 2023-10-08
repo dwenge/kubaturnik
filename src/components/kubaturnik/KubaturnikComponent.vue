@@ -1,7 +1,9 @@
 <template>
   <div class="wrap">
     <button @click="clear">Новый расчет</button>
-  <ItemList />
+    <br>
+    <br>
+    <ItemList />
   </div>
 </template>
 
@@ -22,5 +24,6 @@ function clear() {
 .wrap {
   max-width: 420px;
   margin: 0 auto;
+  padding: 15px;
 }
 </style>
