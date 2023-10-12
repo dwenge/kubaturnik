@@ -28,7 +28,7 @@ const emits = defineEmits(['update:quantity', 'remove'])
 const q = computed({
   get: () => props.quantity,
   set(v) {
-    if (v !== '') emits('update:quantity', v)
+    if (v !== '') emits('update:quantity', v > 0 ? v : 1)
   }
 })
 const total = computed(() => (props.volume * props.quantity).toFixed(3))
