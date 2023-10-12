@@ -4,11 +4,11 @@
     <td><div class="v">{{ volume }}</div></td>
     <td>
       <div class="q">
-        <div class="btn" @click="q--">-</div>
+        <button class="btn" @click="q--">-</button>
         <div class="input">
           <input type="number" min="0" step="1" :value="q" @input="q = $event.target.value">
         </div>
-        <div class="btn" @click="q++">+</div>
+        <button class="btn" @click="q++">+</button>
       </div>
     </td>
     <td><div class="v">=</div></td>
@@ -55,6 +55,12 @@ input {
   height: 30px;
   text-align: center;
   border: 0;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .btn {
