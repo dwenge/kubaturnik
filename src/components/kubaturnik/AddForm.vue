@@ -26,6 +26,7 @@ function add() {
   if (selected.value) {
     const v = selected.value.split(',');
     store.dispatch('addItem', {d: +v[0], v: +v[1], q: 1});
+    selected.value = '';
   }
 }
 </script>
