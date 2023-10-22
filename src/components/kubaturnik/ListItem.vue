@@ -6,7 +6,11 @@
       <div class="q">
         <button class="btn" @click="q--">-</button>
         <div class="input">
-          <input type="number" min="0" step="1" :value="q" @input="q = $event.target.value">
+          <input type="number" min="0" step="1"
+                 :value="q"
+                 @input="q = $event.target.value"
+                 @focus="inputFocus"
+          >
         </div>
         <button class="btn" @click="q++">+</button>
       </div>
@@ -21,6 +25,7 @@
 
 <script setup>
 import {computed} from "vue";
+import {inputFocus} from '@/tools/dom';
 
 const props = defineProps(['diameter', 'volume', 'quantity'])
 const emits = defineEmits(['update:quantity', 'remove'])
@@ -48,6 +53,8 @@ const total = computed(() => (props.volume * props.quantity).toFixed(3))
 
 .input {
   flex-grow: 1;
+  border-bottom: 1px solid gray;
+  margin: 0 10px;
 }
 
 input {
