@@ -59,6 +59,7 @@ const total = computed(() => (props.volume * props.quantity).toFixed(3))
 
 input {
   width: 100%;
+  min-width: 50px;
   height: 30px;
   text-align: center;
   border: 0;
@@ -87,10 +88,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
 }
 .v {
-  padding: 0 15px;
-}
-.r {
-  margin-left: 15px;
+  padding: 0 5px;
 }
 .total {
   min-width: 55px;

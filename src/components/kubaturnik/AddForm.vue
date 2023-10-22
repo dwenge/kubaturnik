@@ -6,6 +6,7 @@
     <input type="number" min="1"
            v-model="quantity"
            @focus="inputFocus"
+           style="width:50px"
     >
     <button @click="add">Добавить</button>
   </div>
